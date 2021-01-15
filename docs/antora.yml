@@ -1,0 +1,6 @@
+name: kobol-ui-bundle-docs
+title: Kobol UI Bundle Docs
+version: master
+start_page: ROOT:index.adoc
+nav:
+- modules/ROOT/nav.adoc
