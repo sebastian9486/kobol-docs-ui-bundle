@@ -2,6 +2,7 @@
 @Library('kobol-shared-pipelines') _
 
 def uiBundlePath = "src/main/ui-bundle/ui"
+def version = "0.0.1-SNAPSHOT"
 
 def artifactoryUser = "deploy-user"
 def artifactoryPass = "Shyb2g%8u72%3e1s3p&%r#qyzjw4te!r"
@@ -53,7 +54,7 @@ pipeline {
         stage("deploy snapshot to artifactory") {
             steps {
                 dir("target") {
-                    sh "curl -u \"${artifactoryUser}:${artifactoryPass}\" -T \"build/ui-bundle.zip\" \"https://allesundnichts.jfrog.io/artifactory/${repo}/${artifactPackage}/${artifactName}/0.0.1-SNAPSHOT/${artifactName}-0.0.1-SNAPSHOT.zip\""
+                    sh "curl -u \"${artifactoryUser}:${artifactoryPass}\" -T \"build/ui-bundle.zip\" \"https://allesundnichts.jfrog.io/artifactory/${repo}/${artifactPackage}/${artifactName}/${version}/${artifactName}-${version}.zip\""
                 }
             }
         }
