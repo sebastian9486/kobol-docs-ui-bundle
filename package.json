@@ -1,0 +1,31 @@
+{
+  "name": "CEP3-Docs",
+  "version": "1.0.0",
+  "description": "build static site using antora",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr antora generate antora-playbook-local.yml --stacktrace --generator antora-site-generator-lunr --clean --fetch",
+    "build:dev": "DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr antora generate antora-playbook-dev.yml --stacktrace --generator antora-site-generator-lunr --clean --fetch",
+    "build:prod": "DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr antora generate antora-playbook.yml --stacktrace --generator antora-site-generator-lunr --clean --fetch"
+  },
+  "keywords": [
+    "antora",
+    "cep3",
+    "docs-as-code"
+  ],
+  "author": "Sebastian Sommerfeld (pd03056)",
+  "devDependencies": {
+    "@antora/cli": "^2.0.0",
+    "@antora/site-generator-default": "^2.0.0",
+    "@asciidoctor/core": "^2.0.0",
+    "asciidoctor-kroki": "^0.7.0"
+  },
+  "private": true,
+  "dependencies": {
+    "antora-lunr": "^0.6.0",
+    "antora-site-generator-lunr": "^0.4.0",
+    "gulp": "^4.0.2",
+    "mkdirp": "^1.0.4"
+  }
+}

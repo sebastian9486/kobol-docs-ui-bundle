@@ -1,0 +1,60 @@
+#!groovy
+@Library('kobol-shared-pipelines') _
+
+def uiBundlePath = "src/main/ui-bundle/ui"
+
+def artifactoryUser = "deploy-user"
+def artifactoryPass = "Shyb2g%8u72%3e1s3p&%r#qyzjw4te!r"
+def artifactPackage = "com/aun/docs/antora/ui"
+def artifactName = "kobol-docs-ui-bundle"
+def repo = "libs-snapshot"
+
+pipeline {
+    agent any
+    triggers { pollSCM 'H/1 * * * *' }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '8', artifactNumToKeepStr: '8'))
+    }
+
+    stages {
+        stage('Checkout from Git') {
+            steps {
+                git(url: 'https://github.com/sebastian9486/kobol.git', credentialsId: 'github-ci', branch: "master")
+            }
+        }
+
+        // Move whole stage to library
+        stage("install npm packages") {
+            steps {
+				dir("${uiBundlePath}") {
+                    sh "pwd"
+					sh "node --version"
+					sh "npm --version"
+					sh "npm install"
+                    sh "npm install gulp"
+					sh "npm install gulp-cli"
+					// sh "npm install antora-site-generator-lunr"
+				}
+            }
+        }
+
+        // Move whole stage to library
+        stage("build ui bundle") {
+			steps {
+				dir("${uiBundlePath}") {
+					sh "./node_modules/.bin/gulp bundle"
+				}
+			}
+		}
+
+        // Move whole stage to library
+        stage("deploy snapshot to artifactory") {
+            steps {
+                dir("target") {
+                    sh "curl -u \"${artifactoryUser}:${artifactoryPass}\" -T \"build/ui-bundle.zip\" \"https://allesundnichts.jfrog.io/artifactory/${repo}/${artifactPackage}/${artifactName}/0.0.1-SNAPSHOT/${artifactName}-0.0.1-SNAPSHOT.zip\""
+                }
+            }
+        }
+    }
+}

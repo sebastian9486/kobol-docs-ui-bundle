@@ -1,0 +1,30 @@
+<header class="header" role="banner">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{or site.url (or siteRootUrl siteRootPath)}}">{{site.title}}</a>
+            {{#if env.DOCSEARCH_ENABLED}}
+                <div class="navbar-item">
+                    <input id="search-input" type="text" placeholder="Suchen ...">
+                </div>
+            {{/if}}
+            <button class="navbar-burger" data-target="topbar-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+	<div id="topbar-nav" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="/">Home</a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link" href="#">Weitere Informationen</a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://github.com/sebastian9486">Github Profile</a>
+			<a class="navbar-item" href="https://docs.antora.org/">Antora Docs</a>
+                        <a class="navbar-item" href="https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/">AsciiDoc Syntax Quick Reference</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
