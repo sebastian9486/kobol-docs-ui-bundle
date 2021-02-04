@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('Checkout from Git') {
             steps {
-                git(url: 'https://github.com/sebastian9486/kobol.git', credentialsId: 'github-ci', branch: "master")
+                git(url: 'https://github.com/sebastian9486/kobol-docs-ui-bundle.git', credentialsId: 'github-ci', branch: "master")
             }
         }
 
