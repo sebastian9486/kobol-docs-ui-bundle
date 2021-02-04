@@ -43,6 +43,7 @@ pipeline {
         stage("build ui bundle") {
 			steps {
 				dir("${uiBundlePath}") {
+                    sh "pwd"
 					sh "./node_modules/.bin/gulp bundle"
 				}
 			}
