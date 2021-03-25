@@ -67,6 +67,8 @@ body div.body main.article article.doc { max-width: 60rem; }
 body div.body main.article article.doc h3:not(.discrete) { font-weight: 400; }
 body div.body main.article article.doc .olist li, body div.body main.article article.doc .ulist li { margin-bottom: auto; }
 
+body div.body main.article article.doc .imageblock .title { font-weight: normal; font-size: 13px; }
+
 /*body div.body main.article article.doc #preamble > .sectionbody { border: solid 2px #ddd; padding: .5em 1em 1.25em 1em; border-radius: .5em; }
 body div.body main.article article.doc #preamble hr { display: none; }*/
 body div.body main.article article.doc #preamble hr { border: solid 1px var(--custom-header-light); margin: .75rem 0 .25rem 0; }
